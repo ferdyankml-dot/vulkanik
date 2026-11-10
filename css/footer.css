@@ -1,0 +1,142 @@
+.site-footer {
+    margin-top: auto;
+    padding: 48px 0 22px;
+    border-top: 1px solid rgba(21, 24, 19, 0.08);
+    background: #f2f0e9;
+    color: #575c52;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+}
+
+.site-footer,
+.site-footer * {
+    box-sizing: border-box;
+}
+
+.footer-container {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.4fr) repeat(3, minmax(150px, 1fr));
+    gap: 38px;
+    padding-bottom: 36px;
+}
+
+.footer-about {
+    max-width: 340px;
+}
+
+.footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    color: #151813;
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 1.55rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.footer-brand span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #889a74;
+}
+
+.site-footer p {
+    margin: 0 0 14px;
+    color: #575c52;
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.site-footer .footer-affiliation {
+    color: #83887d;
+    font-size: 0.8rem;
+}
+
+.footer-column h2 {
+    margin: 6px 0 14px;
+    color: #151813;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.footer-column ul {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer-column li {
+    margin: 0;
+    padding: 0;
+    font-size: 0.84rem;
+}
+
+.footer-column a,
+.footer-bottom a {
+    color: #575c52;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-column a:hover,
+.footer-bottom a:hover {
+    color: #344326;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(21, 24, 19, 0.08);
+    color: #83887d;
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+
+.footer-bottom a {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 850px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px;
+    }
+}
+
+@media (max-width: 520px) {
+    .site-footer {
+        padding: 36px 0 18px;
+    }
+
+    .footer-container {
+        width: calc(100% - 32px);
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding-bottom: 26px;
+    }
+
+    .footer-about {
+        max-width: none;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

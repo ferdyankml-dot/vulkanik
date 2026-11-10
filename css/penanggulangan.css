@@ -1,0 +1,30 @@
+/* Penanggulangan page styles - Editorial Aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  --accent: #344326;
+  --muted: #6b6b78;
+  --card-shadow: 0 12px 36px rgba(9,13,19,0.06);
+}
+
+html,body{ margin:0; padding:0; font-family:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; color:#151813; background:#faf9f5; }
+
+h1, h2, h3, h4 { font-family: 'Newsreader', serif; }
+
+.navbar-brand{ color:#fff !important; font-weight:700; font-family: 'Newsreader', serif; }
+
+.section-hero{ padding:3.5rem 0; background: #7d906a; color: #fff; }
+.section-hero h1{ font-weight:500; letter-spacing:-0.6px; color: #fff; font-size: 2.6rem; }
+.section-hero p.lead{ color: rgba(255,255,255,0.9); }
+
+.phase-card{ border-radius:18px; border: 1px solid rgba(0,0,0,0.06); border-left:6px solid var(--accent); box-shadow:var(--card-shadow); transition:transform .28s ease, box-shadow .28s ease; overflow:hidden; background: #fff; }
+.phase-card:hover{ transform:translateY(-4px); box-shadow:0 20px 48px rgba(9,13,19,0.08); }
+.phase-card .card-body{ padding:1.5rem; }
+.phase-card .card-title{ font-weight:700; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* List inside cards */
+.phase-card ul{ margin:0.5rem 0 0 1rem; }
+
+@media (max-width:768px){ .section-hero{ padding:2.5rem 1rem; } .section-hero h1{ font-size:1.8rem; } }
+
+.text-muted{ color:var(--muted) !important; }

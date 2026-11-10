@@ -1,0 +1,38 @@
+/* Definisi page styles - Editorial Aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  --accent: #344326;
+  --accent-dark: #26331b;
+  --text: #151813;
+  --muted: #6b6b78;
+  --card-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+*{ box-sizing: border-box; }
+html,body{ height:100%; margin:0; font-family:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; color:var(--text); background:#faf9f5; }
+
+h1, h2, h3, h4, .display-4 { font-family: 'Newsreader', serif; }
+
+.navbar-brand{ color:#fff !important; font-weight:700; font-family: 'Newsreader', serif; }
+
+/* Hero */
+.hero-section{ background: #7d906a; color:#fff; padding:4.25rem 0; text-align:center; }
+.hero-section h1{ font-weight:500; font-size:2.8rem; margin-bottom:0.25rem; letter-spacing:-0.6px; color:#fff; }
+.hero-section p.lead{ color: rgba(255,255,255,0.9); font-size:1.1rem; }
+.hero-section img{ display:block; margin:1.25rem auto 0; max-width:760px; width:100%; height:auto; border-radius:18px; box-shadow:var(--card-shadow); }
+
+/* Content */
+.content-card{ background:#fff; border-radius:20px; box-shadow:var(--card-shadow); border: 1px solid rgba(0,0,0,0.06); border-left:6px solid var(--accent); }
+.content-card h2, .content-card h4, .content-card h5{ font-weight:700; }
+.content-card .card-body p{ color: #333; }
+
+.card.bg-light{ background:#f5f4ef !important; border-radius: 14px; border: 1px solid rgba(0,0,0,0.05); }
+.table thead.table-dark{ background:#344326; color:#fff; }
+.table thead.table-dark th{ color:#fff; }
+
+.alert-warning{ border-left:6px solid var(--accent); background: #f2f6ed; color: #26331b; border-color: rgba(52,67,38,0.2); }
+
+.text-orange{ color:var(--accent); }
+
+@media (max-width:768px){ .hero-section h1{ font-size:1.8rem; } .hero-section{ padding:3rem 0; } }
