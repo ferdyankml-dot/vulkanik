@@ -3,119 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Definisi Gunung Meletus - Nada Vulkanik</title>
+    <title>Definisi Erupsi Gunung Berapi - Vulkanik</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/definisi.css">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Leaflet CSS for Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2m7k3kQ0Rkpv3Y0sKQb2n0wqvM2q3b0x0s+6b0M=" crossorigin=""/>
-    
-    <!-- Custom Editorial CSS -->
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/definisi.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
     <?php include __DIR__ . '/includes/navbar.php'; ?>
 
-    <!-- Hero Section -->
     <section class="hero-section py-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12 text-center">
-                    <h1 class="display-4 fw-bold">DEFINISI BENCANA GUNUNG MELETUS</h1>
-                    <p class="lead">Memahami Hakikat dan Karakteristik Letusan Gunung Berapi</p>
+                    <h1 class="display-4 fw-bold">DEFINISI ERUPSI GUNUNG BERAPI</h1>
+                    <p class="lead">Mengenal proses, penyebab, dan bahaya yang dapat menyertai aktivitas vulkanik</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Content -->
     <section class="py-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <div class="content-card p-5">
-                        <h2 class="text-orange mb-4">Apa Itu Gunung Meletus?</h2>
-                        <p class="mb-4">
-                            <strong>Gunung meletus</strong> adalah fenomena alam yang terjadi ketika magma, gas, dan material vulkanik lainnya keluar dari dalam perut bumi melalui lubang kepundan gunung berapi. Peristiwa ini merupakan salah satu bentuk manifestasi dari aktivitas tektonik dan vulkanik yang terjadi di kerak bumi.
+                    <div class="content-card p-4 p-md-5">
+                        <h2 class="text-orange mb-4">Apa yang dimaksud dengan erupsi?</h2>
+                        <p>
+                            <strong>Erupsi gunung api</strong> adalah keluarnya magma dan material vulkanik dari dalam bumi
+                            melalui saluran dan kawah gunung api. Peristiwa ini merupakan bagian dari aktivitas vulkanik.
+                            Bahayanya dapat berupa awan panas, lontaran material pijar, hujan abu lebat, aliran lava, gas
+                            vulkanik, banjir lahar, longsoran, dan dalam kondisi tertentu tsunami.
+                        </p>
+                        <p class="mb-0">
+                            Magma adalah batuan cair yang berada di bawah permukaan bumi. Ketika magma mencapai permukaan,
+                            material tersebut disebut lava. Dampak erupsi berbeda-beda pada setiap gunung dan dapat berubah
+                            mengikuti aktivitas serta kondisi setempat.
                         </p>
 
-                        <h4 class="text-orange mt-5">Proses Terjadinya Gunung Meletus</h4>
-                        <div class="row mt-4">
+                        <h3 class="text-orange mt-5">Bagaimana erupsi terjadi?</h3>
+                        <ol class="mt-3">
+                            <li class="mb-2">Magma bergerak dari bagian dalam bumi melalui saluran atau rekahan menuju kawah.</li>
+                            <li class="mb-2">Gas yang terkandung dalam magma mengembang ketika magma naik, sehingga tekanan di dalam sistem gunung api meningkat.</li>
+                            <li class="mb-2">Tekanan yang terus bertambah dapat mendorong batuan di sekitarnya dan memicu keluarnya magma serta gas.</li>
+                            <li class="mb-2">Erupsi dapat menghasilkan kolom abu, tephra, bom vulkanik, dan material pijar yang terlontar.</li>
+                            <li class="mb-2">Material panas dapat mengalir menuruni lereng sebagai awan panas atau aliran lava.</li>
+                            <li class="mb-2">Material vulkanik yang bercampur air dapat membentuk lahar; gas juga dapat keluar melalui fumarol.</li>
+                            <li>Erupsi atau ketidakstabilan lereng dapat disertai longsoran bahan rombakan.</li>
+                        </ol>
+
+                        <h3 class="text-orange mt-5">Faktor yang dapat memicu erupsi</h3>
+                        <div class="row g-3 mt-2">
                             <div class="col-md-6">
-                                <div class="card border-0 bg-light">
+                                <div class="card h-100 border-0 bg-light">
                                     <div class="card-body">
-                                        <h5 class="card-title">1. Akumulasi Magma</h5>
-                                        <p class="card-text">Magma terkumpul di dalam dapur magma akibat lelehan batuan dari mantel bumi.</p>
+                                        <h4 class="h5 card-title">Tekanan magma meningkat</h4>
+                                        <p class="card-text mb-0">Magma yang terkumpul di dalam gunung api dapat meningkatkan tekanan dan mendorong batuan di sekitarnya.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="card border-0 bg-light">
+                                <div class="card h-100 border-0 bg-light">
                                     <div class="card-body">
-                                        <h5 class="card-title">2. Peningkatan Tekanan</h5>
-                                        <p class="card-text">Tekanan gas dan magma meningkat hingga mencari jalan keluar melalui rekahan batuan.</p>
+                                        <h4 class="h5 card-title">Akumulasi gas vulkanik</h4>
+                                        <p class="card-text mb-0">Gas terlarut mengembang saat magma bergerak naik dan dapat menambah tekanan dalam sistem vulkanik.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="card border-0 bg-light">
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 bg-light">
                                     <div class="card-body">
-                                        <h5 class="card-title">3. Erupsi</h5>
-                                        <p class="card-text">Magma, gas, dan material vulkanik menyembur keluar melalui kawah gunung.</p>
+                                        <h4 class="h5 card-title">Pergerakan magma</h4>
+                                        <p class="card-text mb-0">Magma yang bergerak melalui rekahan dapat mencapai permukaan dan menyebabkan erupsi.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="card border-0 bg-light">
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 bg-light">
                                     <div class="card-body">
-                                        <h5 class="card-title">4. Pembentukan Material Vulkanik</h5>
-                                        <p class="card-text">Terbentuknya lava, abu vulkanik, awan panas, dan material piroklastik.</p>
+                                        <h4 class="h5 card-title">Aktivitas tektonik</h4>
+                                        <p class="card-text mb-0">Pergerakan lempeng dan gempa dapat memengaruhi sistem vulkanik atau membuka rekahan baru.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <h4 class="text-orange mt-5">Jenis-Jenis Material Vulkanik</h4>
-                        <table class="table table-striped mt-3">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Material</th>
-                                    <th>Deskripsi</th>
-                                    <th>Dampak</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Lava</strong></td>
-                                    <td>Magma yang mencapai permukaan bumi</td>
-                                    <td>Merusak wilayah sekitarnya</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Abu Vulkanik</strong></td>
-                                    <td>Partikel halus batuan dan mineral</td>
-                                    <td>Mengganggu pernapasan dan penerbangan</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Awan Panas</strong></td>
-                                    <td>Campuran gas dan material panas</td>
-                                    <td>Sangat mematikan bagi makhluk hidup</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Bom Vulkanik</strong></td>
-                                    <td>Batuan besar yang terlempar</td>
-                                    <td>Kerusakan fisik akibat benturan</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="alert alert-warning mt-4">
-                            <h5><i class="fas fa-exclamation-triangle"></i> Penting!</h5>
-                            <p class="mb-0">Pemahaman yang baik tentang definisi dan karakteristik gunung meletus merupakan langkah pertama dalam upaya mitigasi dan kesiapsiagaan menghadapi bencana vulkanik.</p>
+                        <div class="alert alert-warning mt-4 mb-0">
+                            <h4 class="h5"><i class="fas fa-triangle-exclamation me-2"></i>Utamakan informasi resmi</h4>
+                            <p class="mb-0">Tanda aktivitas gunung api tidak dapat digunakan sendiri untuk memprediksi waktu erupsi. Ikuti informasi dan rekomendasi PVMBG, BPBD, serta petugas setempat.</p>
                         </div>
                     </div>
                 </div>
@@ -124,7 +100,6 @@
     </section>
 
     <?php include __DIR__ . '/includes/footer.php'; ?>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

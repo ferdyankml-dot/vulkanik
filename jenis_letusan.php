@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jenis Letusan - Nada Vulkanik</title>
+    <title>Produk dan Bahaya Erupsi - Vulkanik</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/jenis_letusan.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -13,164 +13,86 @@
 <body>
     <?php include __DIR__ . '/includes/navbar.php'; ?>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-white py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12 text-center">
-                    <h1 class="display-4 fw-bold">JENIS-JENIS LETUSAN GUNUNG BERAPI</h1>
-                    <p class="lead">Mengenal Karakteristik Berbagai Tipe Erupsi Vulkanik</p>
-                </div>
-            </div>
+    <section class="hero-section text-white">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">PRODUK DAN BAHAYA ERUPSI</h1>
+            <p class="lead">Kenali material yang dikeluarkan gunung api dan bahaya yang dapat ditimbulkannya</p>
         </div>
     </section>
 
-    <!-- Content -->
     <section class="py-5 bg-light">
         <div class="container">
-            <div class="row">
-                <!-- Hawaiian -->
-                <div class="col-lg-6 mb-4">
-                    <div class="eruption-card card h-100">
-                        <div class="card-header text-center">
-                            <i class="fas fa-fire me-2"></i>Letusan Hawaiian
-                        </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <article class="eruption-card card h-100">
+                        <div class="card-header text-center"><i class="fas fa-cloud me-2"></i>Abu, tephra, dan lontaran pijar</div>
                         <div class="card-body">
-                            <h5 class="card-title text-orange">Karakteristik:</h5>
-                            <ul>
-                                <li>Lava cair dan encer</li>
-                                <li>Aliran lava yang tenang</li>
-                                <li>Minimal ledakan</li>
-                                <li>Fountain lava</li>
-                            </ul>
-                            <h5 class="card-title text-orange">Contoh:</h5>
-                            <p>Gunung Kilauea (Hawaii), Mauna Loa</p>
+                            <p>Erupsi dapat membentuk kolom abu dan melontarkan tephra, termasuk bom vulkanik dan material pijar.</p>
+                            <h2 class="h5 text-orange">Potensi bahaya</h2>
+                            <p class="mb-0">Hujan abu lebat dapat mengganggu pernapasan dan aktivitas. Material yang terlontar dapat membahayakan wilayah di sekitar gunung api.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
-
-                <!-- Strombolian -->
-                <div class="col-lg-6 mb-4">
-                    <div class="eruption-card card h-100">
-                        <div class="card-header text-center">
-                            <i class="fas fa-bomb me-2"></i>Letusan Strombolian
-                        </div>
+                <div class="col-lg-6">
+                    <article class="eruption-card card h-100">
+                        <div class="card-header text-center"><i class="fas fa-fire me-2"></i>Awan panas piroklastik</div>
                         <div class="card-body">
-                            <h5 class="card-title text-orange">Karakteristik:</h5>
-                            <ul>
-                                <li>Ledakan sedang secara berkala</li>
-                                <li>Lava kental</li>
-                                <li>Bom vulkanik dan lapili</li>
-                                <li>Suara gemuruh</li>
-                            </ul>
-                            <h5 class="card-title text-orange">Contoh:</h5>
-                            <p>Gunung Stromboli (Italia), Erebus (Antartika)</p>
+                            <p>Campuran gas dan material vulkanik panas yang dapat mengalir cepat menuruni lereng.</p>
+                            <h2 class="h5 text-orange">Potensi bahaya</h2>
+                            <p class="mb-0">Suhu tinggi dan alirannya sangat berbahaya. Jauhi zona yang ditetapkan berbahaya dan patuhi perintah evakuasi.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
-
-                <!-- Vulcanian -->
-                <div class="col-lg-6 mb-4">
-                    <div class="eruption-card card h-100">
-                        <div class="card-header text-center">
-                            <i class="fas fa-explosion me-2"></i>Letusan Vulcanian
-                        </div>
+                <div class="col-lg-6">
+                    <article class="eruption-card card h-100">
+                        <div class="card-header text-center"><i class="fas fa-water me-2"></i>Aliran lava</div>
                         <div class="card-body">
-                            <h5 class="card-title text-orange">Karakteristik:</h5>
-                            <ul>
-                                <li>Ledakan keras dan singkat</li>
-                                <li>Awan abu tebal</li>
-                                <li>Bom vulkanik besar</li>
-                                <li>Kolom erupsi tinggi</li>
-                            </ul>
-                            <h5 class="card-title text-orange">Contoh:</h5>
-                            <p>Gunung Vulcano (Italia), Sakurajima (Jepang)</p>
+                            <p>Lava adalah magma yang sudah mencapai permukaan dan dapat mengalir keluar dari kawah.</p>
+                            <h2 class="h5 text-orange">Potensi bahaya</h2>
+                            <p class="mb-0">Lava dapat membakar atau merusak area yang dilaluinya. Arah dan jangkauan bahayanya mengikuti kondisi gunung api.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
-
-                <!-- Plinian -->
-                <div class="col-lg-6 mb-4">
-                    <div class="eruption-card card h-100">
-                        <div class="card-header text-center">
-                            <i class="fas fa-cloud-meatball me-2"></i>Letusan Plinian
-                        </div>
+                <div class="col-lg-6">
+                    <article class="eruption-card card h-100">
+                        <div class="card-header text-center"><i class="fas fa-cloud-bolt me-2"></i>Gas vulkanik</div>
                         <div class="card-body">
-                            <h5 class="card-title text-orange">Karakteristik:</h5>
-                            <ul>
-                                <li>Ledakan sangat hebat</li>
-                                <li>Kolom erupsi sangat tinggi</li>
-                                <li>Abu vulkanik meluas</li>
-                                <li>Kaldera terbentuk</li>
-                            </ul>
-                            <h5 class="card-title text-orange">Contoh:</h5>
-                            <p>Gunung Vesuvius (79 M), Pinatubo (1991)</p>
+                            <p>Gas vulkanik dapat keluar saat erupsi maupun melalui lubang keluarnya gas seperti fumarol.</p>
+                            <h2 class="h5 text-orange">Potensi bahaya</h2>
+                            <p class="mb-0">Gas tertentu dapat beracun atau mengganggu kesehatan. Hindari kawah dan area yang dibatasi petugas.</p>
                         </div>
-                    </div>
+                    </article>
+                </div>
+                <div class="col-lg-6">
+                    <article class="eruption-card card h-100">
+                        <div class="card-header text-center"><i class="fas fa-house-flood-water me-2"></i>Lahar dan banjir lahar</div>
+                        <div class="card-body">
+                            <p>Material vulkanik yang bercampur air dapat membentuk lahar dan mengalir mengikuti alur sungai.</p>
+                            <h2 class="h5 text-orange">Potensi bahaya</h2>
+                            <p class="mb-0">Aliran lahar dapat mengancam warga dan bangunan di lembah sungai. Waspada terutama saat hujan deras dan jauhi aliran sungai.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-lg-6">
+                    <article class="eruption-card card h-100">
+                        <div class="card-header text-center"><i class="fas fa-mountain-sun me-2"></i>Longsoran dan tsunami</div>
+                        <div class="card-body">
+                            <p>Erupsi dapat disertai longsoran bahan rombakan di lereng. Tsunami juga termasuk potensi bahaya pada kondisi tertentu.</p>
+                            <h2 class="h5 text-orange">Potensi bahaya</h2>
+                            <p class="mb-0">Dampaknya bergantung pada kondisi gunung dan wilayah sekitar. Ikuti peringatan dan arahan resmi, termasuk evakuasi bila diperintahkan.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
 
-            <!-- Tabel Perbandingan -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header bg-orange text-white">
-                            <h4 class="mb-0"><i class="fas fa-table me-2"></i>Tabel Perbandingan Jenis Letusan</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Jenis Letusan</th>
-                                            <th>Kekuatan</th>
-                                            <th>Material</th>
-                                            <th>Frekuensi</th>
-                                            <th>Tingkat Bahaya</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><strong>Hawaiian</strong></td>
-                                            <td>Rendah</td>
-                                            <td>Lava cair</td>
-                                            <td>Terus menerus</td>
-                                            <td><span class="badge bg-success">Rendah</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Strombolian</strong></td>
-                                            <td>Sedang</td>
-                                            <td>Lava, bom</td>
-                                            <td>Periodik</td>
-                                            <td><span class="badge bg-warning">Sedang</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Vulcanian</strong></td>
-                                            <td>Tinggi</td>
-                                            <td>Abu, bom</td>
-                                            <td>Spasial</td>
-                                            <td><span class="badge bg-danger">Tinggi</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Plinian</strong></td>
-                                            <td>Sangat Tinggi</td>
-                                            <td>Abu, pumis</td>
-                                            <td>Jarang</td>
-                                            <td><span class="badge bg-dark">Sangat Tinggi</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="alert alert-warning mt-5 mb-0" role="note">
+                <strong><i class="fas fa-circle-info me-2"></i>Catatan:</strong>
+                halaman ini membahas produk dan bahaya erupsi yang dijelaskan dalam materi presentasi, bukan klasifikasi gaya letusan gunung api.
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <?php include __DIR__ . '/includes/footer.php'; ?>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

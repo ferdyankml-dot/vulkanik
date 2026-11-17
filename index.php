@@ -1,42 +1,6 @@
 <?php
 require 'config.php';
 
-// Notifikasi status pesan
-$success_msg = null;
-$error_msg = null;
-
-// Proses pertanyaan baru
-if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && isset($_POST['question'])) {
-    $user_name = isset($_POST['user_name']) ? sanitize($_POST['user_name']) : '';
-    $question = isset($_POST['question']) ? sanitize($_POST['question']) : '';
-    
-    if (!empty($user_name) && !empty($question)) {
-        if ($conn) {
-            $sql = "INSERT INTO questions (user_name, question) VALUES ('$user_name', '$question')";
-            if ($conn->query($sql)) {
-                $success_msg = "Pertanyaan Anda berhasil dikirim! Admin posko siaga Vulkanik akan segera merespons.";
-            } else {
-                $error_msg = "Gagal mengirim ke database: " . $conn->error;
-            }
-        } else {
-            $error_msg = "Pertanyaan belum dapat disimpan karena koneksi database tidak tersedia. Silakan coba kembali beberapa saat lagi.";
-        }
-    } else {
-        $error_msg = "Mohon isi nama dan pertanyaan Anda secara lengkap.";
-    }
-
-    $_SESSION['qa_flash'] = [
-        'success' => $success_msg,
-        'error' => $error_msg
-    ];
-    header('Location: index.php#tanya-jawab', true, 303);
-    exit();
-}
-
-$success_msg = $_SESSION['qa_flash']['success'] ?? null;
-$error_msg = $_SESSION['qa_flash']['error'] ?? null;
-unset($_SESSION['qa_flash']);
-
 // Data informatif orang hilang
 $default_orang_hilang = [
     [
@@ -68,31 +32,6 @@ $default_orang_hilang = [
         'lokasi_hilang' => 'Pos Pengamatan Darurat Gunung Merapi',
         'foto' => null,
         'status' => 'ditemukan'
-    ]
-];
-
-// Data tanya jawab edukatif mitigasi & vulkanologi
-$default_qa = [
-    [
-        'user_name' => 'Budi Santoso (Warga Lereng)',
-        'question' => 'Apa tindakan pertama yang wajib dilakukan saat sirine peringatan dini erupsi dibunyikan oleh petugas posko?',
-        'answer' => 'Segera gunakan masker respirator N95 atau kain basah untuk menutup hidung dan mulut, ambil Tas Siaga Bencana (TSB) 72 jam, lindungi mata dengan kacamata goggle, dan berjalan tertib mengikuti rambu jalur evakuasi resmi menuju Titik Kumpul Aman di luar radius bahaya yang ditetapkan PVMBG.',
-        'created_at' => '2025-11-24 08:26:42',
-        'admin_name' => 'Posko PVMBG & BPBD'
-    ],
-    [
-        'user_name' => 'Sari Dewi (Relawan Mandiri)',
-        'question' => 'Bagaimana cara membedakan zona Kawasan Rawan Bencana (KRB) I, II, dan III?',
-        'answer' => 'KRB III (Zona Merah) adalah kawasan yang paling dekat dengan kawah dan selalu terancam awan panas, lontaran batu pijar, serta aliran lava; zona ini wajib dikosongkan total saat erupsi. KRB II (Zona Kuning) berpotensi terlanda awan panas dan lahar, warga harus siap evakuasi seketika. KRB I (Zona Hijau) berpotensi terdampak abu vulkanik lebat dan aliran lahar hujan di sepanjang bantaran sungai.',
-        'created_at' => '2025-11-24 08:26:42',
-        'admin_name' => 'Tim SAR & Vulkanologi'
-    ],
-    [
-        'user_name' => 'Ahmad Iqbal',
-        'question' => 'Mengapa bahaya lahar hujan (lahar dingin) dapat terjadi berbulan-bulan setelah letusan utama selesai?',
-        'answer' => 'Karena material piroklastik (pasir, kerikil, batu) yang tertimbun di sekitar puncak dan lereng atas akan terbawa turun oleh arus air hujan berintensitas tinggi melewati lembah sungai, mengubah alur sungai menjadi aliran lumpur berkecepatan tinggi yang dapat merusak jembatan dan permukiman warga.',
-        'created_at' => '2025-11-24 08:29:59',
-        'admin_name' => 'Edukator Bencana Vulkanik'
     ]
 ];
 
@@ -144,27 +83,6 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
     }
 }
 
-// Ambil Q&A dari DB
-$qa_list = [];
-if ($conn) {
-    $qa_query = "
-        SELECT q.*, a.answer, a.created_at as answered_at, u.nama as admin_name 
-        FROM questions q 
-        LEFT JOIN answers a ON q.id = a.question_id 
-        LEFT JOIN users u ON a.admin_id = u.id 
-        ORDER BY q.created_at DESC 
-        LIMIT 6
-    ";
-    $qares = $conn->query($qa_query);
-    if ($qares && $qares->num_rows > 0) {
-        while ($row = $qares->fetch_assoc()) {
-            $qa_list[] = $row;
-        }
-    }
-}
-if (empty($qa_list)) {
-    $qa_list = $default_qa;
-}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -262,12 +180,12 @@ if (empty($qa_list)) {
 
                     <div class="testimonial-quote-box">
                         <blockquote>
-                            "Sistem informasi Vulkanik mentransformasi cara masyarakat dan relawan memahami risiko bahaya gunung berapi. Visualisasi spasial Kawasan Rawan Bencana dan pemantauan data begitu jernih, intuitif, dan responsif ketika detik-detik evakuasi sangat krusial."
+                            Sistem informasi Vulkanik mentransformasi cara masyarakat dan relawan memahami risiko bahaya gunung berapi. Visualisasi spasial Kawasan Rawan Bencana dan pemantauan data begitu jernih, intuitif, dan responsif ketika detik-detik evakuasi sangat krusial
                         </blockquote>
-                        <div class="quote-author">
+                        <!-- <div class="quote-author">
                             <h5>Dr. Surono (Mbah Rono)</h5>
                             <p>Mantan Kepala Pusat Vulkanologi dan Mitigasi Bencana Geologi (PVMBG)</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -573,88 +491,6 @@ if (empty($qa_list)) {
                             Saat ini belum ada data orang hilang yang tercatat.
                         </div>
                     <?php endif; ?>
-                </div>
-            </div>
-        </section>
-
-        <!-- Q&A Section (Tanya Jawab Edukasi) -->
-        <section id="tanya-jawab" class="section-spacer">
-            <div class="site-wrapper">
-                <div class="qa-card-wrapper">
-                    <div style="margin-bottom: 32px;">
-                        <span class="eyebrow-tag">Konsultasi Edukasi & Kesiapsiagaan</span>
-                        <h2>Tanya Jawab Seputar Bencana Vulkanik</h2>
-                        <p style="margin-bottom: 0;">
-                            Punya pertanyaan mengenai status gunung berapi, perlindungan abu silika, atau jalur evakuasi aman? Ajukan langsung kepada tim edukator Vulkanik.
-                        </p>
-                    </div>
-
-                    <?php if ($success_msg): ?>
-                        <div style="background: #dcfce7; color: #166534; padding: 14px 20px; border-radius: 12px; margin-bottom: 24px;">
-                            <i class="fas fa-check-circle me-2"></i> <?php echo htmlspecialchars($success_msg); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if ($error_msg): ?>
-                        <div style="background: #fee2e2; color: #991b1b; padding: 14px 20px; border-radius: 12px; margin-bottom: 24px;">
-                            <i class="fas fa-exclamation-circle me-2"></i> <?php echo htmlspecialchars($error_msg); ?>
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="qa-grid">
-                        <!-- Left: List of Questions & Answers -->
-                        <div>
-                            <h4 style="font-family: var(--font-sans); font-size: 1.15rem; font-weight: 700; margin-bottom: 20px;">
-                                Pertanyaan yang Sering Diajukan
-                            </h4>
-
-                            <?php if (!empty($qa_list)): ?>
-                                <?php foreach ($qa_list as $qa): ?>
-                                    <div class="qa-item">
-                                        <div class="qa-question">
-                                            <i class="fas fa-circle-question me-2" style="color: var(--text-olive);"></i>
-                                            <?php echo htmlspecialchars($qa['question']); ?>
-                                        </div>
-                                        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">
-                                            Ditanyakan oleh <strong><?php echo htmlspecialchars($qa['user_name']); ?></strong> • <?php echo date('d M Y', strtotime($qa['created_at'])); ?>
-                                        </div>
-                                        <?php if (!empty($qa['answer'])): ?>
-                                            <div class="qa-answer">
-                                                <strong>Tanggapan Posko (<?php echo htmlspecialchars($qa['admin_name'] ?: 'Admin'); ?>):</strong><br>
-                                                <?php echo nl2br(htmlspecialchars($qa['answer'])); ?>
-                                            </div>
-                                        <?php else: ?>
-                                            <div style="font-size: 0.82rem; color: var(--text-muted); font-style: italic;">
-                                                <i class="fas fa-hourglass-half me-1"></i> Menunggu verifikasi jawaban petugas posko...
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <p style="color: var(--text-muted);">Belum ada pertanyaan terbaru.</p>
-                            <?php endif; ?>
-                        </div>
-
-                        <!-- Right: Ask Question Form -->
-                        <div>
-                            <h4 style="font-family: var(--font-sans); font-size: 1.15rem; font-weight: 700; margin-bottom: 20px;">
-                                Ajukan Pertanyaan Baru
-                            </h4>
-                            <form method="POST" action="#tanya-jawab" class="qa-form">
-                                <div>
-                                    <label style="font-size: 0.86rem; font-weight: 600; display: block; margin-bottom: 6px;">Nama Lengkap / Instansi</label>
-                                    <input type="text" name="user_name" placeholder="Masukkan nama Anda..." required>
-                                </div>
-                                <div>
-                                    <label style="font-size: 0.86rem; font-weight: 600; display: block; margin-bottom: 6px;">Pertanyaan Anda</label>
-                                    <textarea name="question" rows="4" placeholder="Tuliskan pertanyaan Anda seputar letusan, jalur evakuasi aman, atau bantuan darurat..." required></textarea>
-                                </div>
-                                <button type="submit" class="btn-pill btn-pill-dark" style="width: 100%;">
-                                    <i class="fas fa-paper-plane"></i> Kirim Pertanyaan ke Posko
-                                </button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
