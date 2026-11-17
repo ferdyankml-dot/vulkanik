@@ -11,7 +11,7 @@
                 <h2>Pengetahuan Vulkanik</h2>
                 <ul>
                     <li><a href="definisi.php">Definisi Letusan</a></li>
-                    <li><a href="jenis_letusan.php">Jenis Letusan</a></li>
+                    <li><a href="jenis_letusan.php">Produk &amp; Bahaya Erupsi</a></li>
                     <li><a href="dampak.php">Dampak Bahaya</a></li>
                     <li><a href="penanggulangan.php">Penanggulangan</a></li>
                     <li><a href="mitigasi.php">Mitigasi &amp; SOP</a></li>
@@ -23,7 +23,7 @@
                 <ul>
                     <li><a href="index.php#peta-sebaran">Peta Sebaran</a></li>
                     <li><a href="index.php#pencarian">Pencarian Orang Hilang</a></li>
-                    <li><a href="index.php#tanya-jawab">Tanya Jawab</a></li>
+                    <li><a href="berita.php">Berita Gunung Api</a></li>
                     <li><a href="tentang.php">Tentang Vulkanik</a></li>
                     <li><a href="login.php">Portal Admin</a></li>
                 </ul>
@@ -32,7 +32,7 @@
             <div class="footer-column">
                 <h2>Kontak &amp; Bantuan</h2>
                 <ul>
-                    <li><a href="mailto:124240029@upnyk.co.id">124240029@upnyk.co.id</a></li>
+                    <li><a href="mailto:124240029@upnyk.co.id">124240018@upnyk.co.id</a></li>
                     <li><a href="tel:112">Darurat BPBD: 112</a></li>
                     <li><a href="tel:115">BASARNAS: 115</a></li>
                     <li><a href="tel:119">PMI: 119</a></li>

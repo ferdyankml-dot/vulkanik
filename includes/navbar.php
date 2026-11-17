@@ -37,7 +37,7 @@ if ($currentPage === 'admin.php') {
                         <summary>Pengetahuan Vulkanik</summary>
                         <ul class="nav-dropdown-menu">
                             <li><a href="definisi.php"<?php echo $currentPage === 'definisi.php' ? ' aria-current="page"' : ''; ?>>Definisi Letusan</a></li>
-                            <li><a href="jenis_letusan.php"<?php echo $currentPage === 'jenis_letusan.php' ? ' aria-current="page"' : ''; ?>>Jenis Letusan</a></li>
+                            <li><a href="jenis_letusan.php"<?php echo $currentPage === 'jenis_letusan.php' ? ' aria-current="page"' : ''; ?>>Produk &amp; Bahaya Erupsi</a></li>
                             <li><a href="dampak.php"<?php echo $currentPage === 'dampak.php' ? ' aria-current="page"' : ''; ?>>Dampak Bahaya</a></li>
                             <li><a href="penanggulangan.php"<?php echo $currentPage === 'penanggulangan.php' ? ' aria-current="page"' : ''; ?>>Penanggulangan</a></li>
                             <li><a href="mitigasi.php"<?php echo $currentPage === 'mitigasi.php' ? ' aria-current="page"' : ''; ?>>Mitigasi &amp; SOP</a></li>
@@ -46,13 +46,13 @@ if ($currentPage === 'admin.php') {
                 </li>
                 <li class="nav-link-item"><a href="<?php echo htmlspecialchars($sectionPrefix, ENT_QUOTES, 'UTF-8'); ?>#peta-sebaran">Peta Sebaran</a></li>
                 <li class="nav-link-item"><a href="<?php echo htmlspecialchars($sectionPrefix, ENT_QUOTES, 'UTF-8'); ?>#pencarian">Orang Hilang</a></li>
-                <li class="nav-link-item"><a href="<?php echo htmlspecialchars($sectionPrefix, ENT_QUOTES, 'UTF-8'); ?>#tanya-jawab">Tanya Jawab</a></li>
                 <li class="nav-link-item<?php echo $currentPage === 'tentang.php' ? ' active' : ''; ?>">
                     <a href="tentang.php"<?php echo $currentPage === 'tentang.php' ? ' aria-current="page"' : ''; ?>>Tentang</a>
                 </li>
             </ul>
 
             <div class="nav-actions">
+                <a href="berita.php" class="btn-pill <?php echo $currentPage === 'berita.php' ? 'btn-pill-dark' : 'btn-pill-light'; ?>"<?php echo $currentPage === 'berita.php' ? ' aria-current="page"' : ''; ?>>Berita</a>
                 <?php if ($currentPage === 'admin.php'): ?>
                     <a href="index.php" class="btn-pill btn-pill-light">Ke Halaman Publik</a>
                 <?php endif; ?>
