@@ -35,7 +35,8 @@ $default_orang_hilang = [
     ]
 ];
 
-// Ambil daftar orang hilang dari DB
+// Fungsi database [READ]: mengambil maksimal enam data orang_hilang.
+// Urutan mengutamakan status hilang, lalu tanggal hilang terbaru.
 $orang_hilang_list = [];
 if ($conn) {
     $q = $conn->query("SELECT * FROM orang_hilang ORDER BY (status = 'hilang') DESC, tanggal_hilang DESC LIMIT 6");
@@ -49,7 +50,7 @@ if (empty($orang_hilang_list)) {
     $orang_hilang_list = $default_orang_hilang;
 }
 
-// Pencarian orang hilang
+// Fungsi database [SEARCH]: mencari nama, alamat, ciri fisik, atau lokasi hilang.
 $search_term = '';
 $search_results_list = null;
 if (isset($_GET['search']) && trim($_GET['search']) !== '') {
@@ -109,6 +110,7 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
     <main>
         <!-- Hero Section -->
         <section class="hero-section">
+            <!-- Fungsi tampilan peta: menampilkan peta gunung api, status aktivitas, dan filter level bahaya. -->
             <div class="site-wrapper">
                 <div class="hero-title-wrap">
                     <h1 class="hero-main-title">Sistem Informasi Vulkanik.</h1>
@@ -523,6 +525,7 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
         var volcanoMarkers = [];
         var allVolcanoesData = [];
 
+        // Fungsi fallback peta: data cadangan apabila API gunung gagal dimuat.
         var fallbackVolcanoes = [
             { name: "Gunung Merapi", provinsi: "D.I. Yogyakarta & Jawa Tengah", lat: -7.5407, lon: 110.4457, tinggi: "2.930 mdpl", status: "Siaga (Level III)", deskripsi: "Aktivitas guguran lava dan awan panas berkala ke arah barat daya (Sungai Bebeng & Krasak)." },
             { name: "Gunung Semeru", provinsi: "Jawa Timur", lat: -8.108, lon: 112.922, tinggi: "3.676 mdpl", status: "Siaga (Level III)", deskripsi: "Erupsi berkala dengan kolom abu pekat dan ancaman lahar hujan di Besuk Kobokan." },
@@ -535,6 +538,7 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
         ];
 
         function initMap() {
+            // Fungsi peta: menginisialisasi Leaflet, pusat peta Indonesia, dan lapisan OpenStreetMap.
             var mapElement = document.getElementById('volcanoMap');
             if (!mapElement) return;
 
@@ -552,6 +556,7 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
                 attribution: '&copy; OpenStreetMap & PVMBG'
             }).addTo(map);
 
+            // Fungsi peta/API: mengambil koordinat dan status gunung dari endpoint volcanoes.php.
             fetch('api/volcanoes.php')
                 .then(function(res) {
                     if (!res.ok) {
@@ -581,6 +586,7 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
         }
 
         function setMapStatus(message) {
+            // Fungsi peta: memperbarui pesan status pemuatan atau fallback peta.
             var statusElement = document.getElementById('mapStatus');
             if (!statusElement) return;
 
@@ -589,6 +595,7 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
         }
 
         function getMarkerColor(status) {
+            // Fungsi peta: menentukan warna marker berdasarkan status gunung api.
             var s = (status || '').toLowerCase();
             if (s.includes('awas')) return '#7f1d1d';
             if (s.includes('siaga')) return '#dc2626';
@@ -597,6 +604,7 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
         }
 
         function renderMarkers(data) {
+            // Fungsi peta: menghapus marker lama lalu menggambar marker gunung dan popup baru.
             volcanoMarkers.forEach(function(m) { map.removeLayer(m); });
             volcanoMarkers = [];
 
@@ -626,6 +634,7 @@ if (isset($_GET['search']) && trim($_GET['search']) !== '') {
         }
 
         function filterMap(level) {
+            // Fungsi peta: menyaring data marker berdasarkan status Awas, Siaga, atau Waspada.
             document.querySelectorAll('[data-map-filter]').forEach(function(button) {
                 var isActive = button.dataset.mapFilter === level;
                 button.classList.toggle('active', isActive);

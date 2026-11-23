@@ -36,19 +36,19 @@
                 </h4>
                 <ul style="list-style: none; padding: 0; margin: 0 0 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
                     <li style="background: #faf9f5; border: 1px solid var(--border-light); padding: 12px 16px; border-radius: 12px;">
-                        <strong>1</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">12425</span>
+                        <strong>1.Kevin Fatih Rajendra Nafis</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">124250021</span>
                     </li>
                     <li style="background: #faf9f5; border: 1px solid var(--border-light); padding: 12px 16px; border-radius: 12px;">
-                        <strong>Ferdyan Khamil</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">124250018</span>
+                        <strong>2.Ferdyan Khamil</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">124250018</span>
                     </li>
                     <li style="background: #faf9f5; border: 1px solid var(--border-light); padding: 12px 16px; border-radius: 12px;">
-                        <strong>3</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">12425</span>
+                        <strong>3.Dea Natasya</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">124250019</span>
                     </li>
                     <li style="background: #faf9f5; border: 1px solid var(--border-light); padding: 12px 16px; border-radius: 12px;">
-                        <strong>4</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">12425</span>
+                        <strong>4.Firmansyah Maylano Rahmawan</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">124250025</span>
                     </li>
                     <li style="background: #faf9f5; border: 1px solid var(--border-light); padding: 12px 16px; border-radius: 12px;">
-                        <strong>5</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">12425</span>
+                        <strong>5.Nisrina Ayu Wijayanti</strong><br><span style="color: var(--text-muted); font-size: 0.85rem;">124250026</span>
                     </li>
                 </ul>
 

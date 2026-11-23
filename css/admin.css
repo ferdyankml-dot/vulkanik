@@ -40,9 +40,6 @@ html,body{ font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto,
 .badge.bg-warning{ background:#ffd27a; color:#000; }
 .badge.bg-success{ background:#8fd19b; color:#000; }
 
-/* Questions cards */
-#pertanyaan .card{ background: #fff; }
-
 /* Responsive tweaks */
 @media (max-width: 720px){
   .nav .navbar-nav{ margin-top:0.5rem; }
