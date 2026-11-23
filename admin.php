@@ -2,17 +2,17 @@
 session_start();
 require 'config.php';
 
+/** @var mysqli $conn */
+if (!$conn) {
+    die("Koneksi database terputus. Pastikan service MySQL di XAMPP Control Panel sudah dalam status 'Start'.");
+}
+
 if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: login.php");
     exit();
 }
 
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-}
-$csrf_token = $_SESSION['csrf_token'];
-
-// Proses tambah orang hilang
+// Fungsi database [CREATE]: menambah record baru pada tabel orang_hilang.
 if ($_POST && isset($_POST['tambah_orang_hilang'])) {
     $nama = sanitize($_POST['nama']);
     $umur = sanitize($_POST['umur']);
@@ -37,7 +37,7 @@ if ($_POST && isset($_POST['tambah_orang_hilang'])) {
     }
 }
 
-// Proses edit orang hilang
+// Fungsi database [UPDATE]: memperbarui seluruh data record orang_hilang berdasarkan id.
 if ($_POST && isset($_POST['edit_orang_hilang'])) {
     $id = sanitize($_POST['id']);
     $nama = sanitize($_POST['nama']);
@@ -66,7 +66,7 @@ if ($_POST && isset($_POST['edit_orang_hilang'])) {
     }
 }
 
-// Proses hapus orang hilang
+// Fungsi database [DELETE]: menghapus record orang_hilang berdasarkan parameter id.
 if (isset($_GET['hapus'])) {
     $id = sanitize($_GET['hapus']);
     $sql = "DELETE FROM orang_hilang WHERE id='$id'";
@@ -78,11 +78,11 @@ if (isset($_GET['hapus'])) {
     }
 }
 
-// Ambil semua data orang hilang
+// Fungsi database [READ]: mengambil semua record orang_hilang untuk ditampilkan di tabel admin.
 $orang_hilang_query = "SELECT * FROM orang_hilang ORDER BY created_at DESC";
 $orang_hilang_result = $conn->query($orang_hilang_query);
 
-// Ambil data untuk edit
+// Fungsi database [READ]: mengambil satu record orang_hilang yang akan dimuat ke form edit.
 $edit_data = null;
 if (isset($_GET['edit'])) {
     $id = sanitize($_GET['edit']);
@@ -93,58 +93,6 @@ if (isset($_GET['edit'])) {
     }
 }
 
-// Proses jawaban pertanyaan (kode sebelumnya)
-if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && isset($_POST['delete_question'])) {
-    if (!isset($_POST['csrf_token']) || !hash_equals($csrf_token, $_POST['csrf_token'])) {
-        $error_msg = "Permintaan hapus tidak valid. Muat ulang halaman lalu coba kembali.";
-    } else {
-        $question_id = filter_var($_POST['question_id'] ?? '', FILTER_VALIDATE_INT, [
-            'options' => ['min_range' => 1]
-        ]);
-
-        if ($question_id === false || $question_id === null) {
-            $error_msg = "Pertanyaan tidak dapat dihapus karena ID tidak valid.";
-        } else {
-            $delete_question = $conn->prepare("DELETE FROM questions WHERE id = ?");
-            if ($delete_question) {
-                $delete_question->bind_param('i', $question_id);
-                if ($delete_question->execute()) {
-                    if ($delete_question->affected_rows > 0) {
-                        $success_msg = "Pertanyaan berhasil dihapus.";
-                    } else {
-                        $error_msg = "Pertanyaan tidak ditemukan atau sudah dihapus.";
-                    }
-                } else {
-                    $error_msg = "Gagal menghapus pertanyaan: " . $delete_question->error;
-                }
-                $delete_question->close();
-            } else {
-                $error_msg = "Gagal menyiapkan penghapusan pertanyaan: " . $conn->error;
-            }
-        }
-    }
-}
-
-if ($_POST && isset($_POST['answer'])) {
-    $question_id = sanitize($_POST['question_id']);
-    $answer = sanitize($_POST['answer']);
-    $admin_id = 1;
-    
-    $sql = "INSERT INTO answers (question_id, admin_id, answer) VALUES ('$question_id', '$admin_id', '$answer')";
-    if ($conn->query($sql)) {
-        $success_msg = "Jawaban berhasil dikirim!";
-    } else {
-        $error_msg = "Error: " . $conn->error;
-    }
-}
-
-$unanswered_query = "SELECT q.* FROM questions q LEFT JOIN answers a ON q.id = a.question_id WHERE a.id IS NULL ORDER BY q.created_at DESC";
-$unanswered_result = $conn->query($unanswered_query);
-$unanswered_count = $unanswered_result ? $unanswered_result->num_rows : 0;
-$show_questions_tab = $unanswered_count > 0 || isset($_POST['answer']) || isset($_POST['delete_question']);
-
-$answered_query = "SELECT q.*, a.answer, a.created_at as answered_at FROM questions q JOIN answers a ON q.id = a.question_id ORDER BY a.created_at DESC";
-$answered_result = $conn->query($answered_query);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -176,21 +124,13 @@ $answered_result = $conn->query($answered_query);
         <!-- Tab Navigation -->
         <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link<?php echo $show_questions_tab ? '' : ' active'; ?>" id="orang-tab" data-bs-toggle="tab" data-bs-target="#orang" type="button" role="tab" aria-controls="orang" aria-selected="<?php echo $show_questions_tab ? 'false' : 'true'; ?>">Orang Hilang</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link<?php echo $show_questions_tab ? ' active' : ''; ?>" id="pertanyaan-tab" data-bs-toggle="tab" data-bs-target="#pertanyaan" type="button" role="tab" aria-controls="pertanyaan" aria-selected="<?php echo $show_questions_tab ? 'true' : 'false'; ?>">
-                    Pertanyaan
-                    <?php if ($unanswered_count > 0): ?>
-                        <span class="badge rounded-pill bg-danger ms-1"><?php echo $unanswered_count; ?></span>
-                    <?php endif; ?>
-                </button>
+                <button class="nav-link active" id="orang-tab" data-bs-toggle="tab" data-bs-target="#orang" type="button" role="tab" aria-controls="orang" aria-selected="true">Orang Hilang</button>
             </li>
         </ul>
 
         <div class="tab-content" id="adminTabsContent">
             <!-- Tab Orang Hilang -->
-            <div class="tab-pane fade<?php echo $show_questions_tab ? '' : ' show active'; ?>" id="orang" role="tabpanel" aria-labelledby="orang-tab">
+            <div class="tab-pane fade show active" id="orang" role="tabpanel" aria-labelledby="orang-tab">
                 <!-- Form Tambah/Edit Orang Hilang -->
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
@@ -322,75 +262,6 @@ $answered_result = $conn->query($answered_query);
                 </div>
             </div>
 
-            <!-- Tab Pertanyaan (kode sebelumnya) -->
-            <div class="tab-pane fade<?php echo $show_questions_tab ? ' show active' : ''; ?>" id="pertanyaan" role="tabpanel" aria-labelledby="pertanyaan-tab">
-                <!-- Pertanyaan Belum Dijawab -->
-                <div class="card mb-4">
-                    <div class="card-header bg-warning">
-                        <h5 class="mb-0">Pertanyaan Belum Dijawab</h5>
-                    </div>
-                    <div class="card-body">
-                        <?php if ($unanswered_result->num_rows > 0): ?>
-                            <?php while($question = $unanswered_result->fetch_assoc()): ?>
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <h6><?php echo htmlspecialchars($question['user_name']); ?></h6>
-                                            <small class="text-muted"><?php echo date('d M Y H:i', strtotime($question['created_at'])); ?></small>
-                                        </div>
-                                        <p class="mb-3"><?php echo htmlspecialchars($question['question']); ?></p>
-                                        <form method="POST">
-                                            <input type="hidden" name="question_id" value="<?php echo $question['id']; ?>">
-                                            <div class="mb-2">
-                                                <textarea class="form-control" name="answer" rows="3" placeholder="Tulis jawaban..." required></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-success btn-sm">Kirim Jawaban</button>
-                                        </form>
-                                        <form method="POST" class="mt-2" onsubmit="return confirm('Hapus pertanyaan ini? Tindakan ini tidak dapat dibatalkan.')">
-                                            <input type="hidden" name="question_id" value="<?php echo (int) $question['id']; ?>">
-                                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>">
-                                            <button type="submit" name="delete_question" value="1" class="btn btn-outline-danger btn-sm">Hapus Pertanyaan</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            <?php endwhile; ?>
-                        <?php else: ?>
-                            <p class="text-muted">Tidak ada pertanyaan yang belum dijawab.</p>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
-                <!-- Pertanyaan Sudah Dijawab -->
-                <div class="card">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="mb-0">Pertanyaan Sudah Dijawab</h5>
-                    </div>
-                    <div class="card-body">
-                        <?php if ($answered_result->num_rows > 0): ?>
-                            <?php while($qa = $answered_result->fetch_assoc()): ?>
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <h6><?php echo htmlspecialchars($qa['user_name']); ?></h6>
-                                            <small class="text-muted"><?php echo date('d M Y H:i', strtotime($qa['created_at'])); ?></small>
-                                        </div>
-                                        <p class="mb-2"><strong>Pertanyaan:</strong> <?php echo htmlspecialchars($qa['question']); ?></p>
-                                        <p class="mb-0"><strong>Jawaban:</strong> <?php echo htmlspecialchars($qa['answer']); ?></p>
-                                        <small class="text-muted">Dijawab: <?php echo date('d M Y H:i', strtotime($qa['answered_at'])); ?></small>
-                                        <form method="POST" class="mt-3" onsubmit="return confirm('Hapus pertanyaan beserta jawabannya? Tindakan ini tidak dapat dibatalkan.')">
-                                            <input type="hidden" name="question_id" value="<?php echo (int) $qa['id']; ?>">
-                                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>">
-                                            <button type="submit" name="delete_question" value="1" class="btn btn-outline-danger btn-sm">Hapus Pertanyaan</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            <?php endwhile; ?>
-                        <?php else: ?>
-                            <p class="text-muted">Belum ada pertanyaan yang dijawab.</p>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

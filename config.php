@@ -3,11 +3,14 @@ if (session_status() === PHP_SESSION_NONE) {
     @session_start();
 }
 
+// Fungsi: konfigurasi koneksi database MySQL/MariaDB utama aplikasi.
 $host = 'localhost';
 $user = 'root';
 $pass = '';
 $db   = 'vulkanik';
 
+// Inisialisasi koneksi. Nilai null digunakan sebagai fallback saat database tidak tersedia.
+/** @var mysqli|null $conn */
 $conn = null;
 
 try {
@@ -22,6 +25,10 @@ try {
     $conn = null;
 }
 
+/**
+ * Fungsi: membersihkan input sebelum digunakan pada tampilan atau query database.
+ * Menggabungkan pemotongan spasi, penghapusan tag HTML, dan escape karakter SQL.
+ */
 function sanitize($data) {
     global $conn;
     if ($conn) {
@@ -30,7 +37,10 @@ function sanitize($data) {
     return htmlspecialchars(strip_tags(trim($data)));
 }
 
-// Fungsi upload foto
+/**
+ * Fungsi: menyimpan foto unggahan ke folder uploads.
+ * Digunakan untuk melengkapi data tabel orang_hilang yang disimpan ke database.
+ */
 function uploadFoto($file) {
     $target_dir = "uploads/";
     if (!is_dir($target_dir)) {

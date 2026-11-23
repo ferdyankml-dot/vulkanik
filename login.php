@@ -9,6 +9,7 @@ if (isset($_SESSION['admin_logged_in'])) {
 
 $error = null;
 
+// Fungsi: memproses autentikasi akun administrator saat form login dikirim.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username_or_email = sanitize($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
@@ -19,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (($username_or_email === 'admin123' || $username_or_email === 'admin123@vulkanik.com' || $username_or_email === 'admin@vulkanik.com') && $password === 'admin123') {
         $is_valid = true;
     } elseif ($conn) {
+        // Fungsi database [READ]: mencocokkan email/nama dan password pada tabel users.
         $pw_md5 = md5($password);
         $sql = "SELECT * FROM users WHERE (email='$username_or_email' OR nama='$username_or_email') AND (password='$password' OR password='$pw_md5') AND role='admin'";
         $result = $conn->query($sql);

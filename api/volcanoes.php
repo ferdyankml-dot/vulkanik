@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
+// Fungsi data peta: menyimpan daftar gunung yang digunakan sebagai sumber marker Leaflet.
+// Data ini belum berasal dari tabel database dan disajikan sebagai response JSON API.
 $volcanoes = [
     [
         "name" => "Gunung Merapi",
@@ -94,4 +96,5 @@ $volcanoes = [
     ]
 ];
 
+// Fungsi response API: mengirim seluruh data gunung dalam format JSON untuk ditampilkan oleh Leaflet.
 echo json_encode($volcanoes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
